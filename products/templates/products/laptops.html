@@ -1,0 +1,113 @@
+{% extends 'users/base.html' %}
+{% block content %}
+    {% for product in products %}
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">{{product.product_name}}</h1>
+            <p class="lead">{{product.description}}</p>
+            <p class="lead">{{product.price}}</p>
+            <p class="lead">{{product.rating}}</p>
+            <p class="lead">{{product.number_of_users_bought}}</p>
+          </div>
+        </div>
+    {% endfor %}
+    {% for hist in history %}
+        <h1>{{hist.curr_price}}</h1>
+    {% endfor %}
+    <h1>{{labels}}</h1>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <canvas id="myChart"></canvas>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var datas = {{data}}
+        var label_data = {{ labels|safe }};
+        var min_data = {{min_data}}
+        var max_data = {{max_data}}
+        var avg_data = {{avg_data}}
+
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: label_data,
+                datasets: [{
+                    fill: false,
+                    label: 'Price',
+                    backgroundColor: 'rgb(195, 255, 0)',
+                    borderColor: 'rgb(234, 0, 255)',
+                    data: datas
+                },{
+                    label: 'Minimum Price',
+                    fill: false,
+                    backgroundColor: 'rgb(0, 0, 255)',
+                    borderColor: 'rgb(0, 0, 255)',
+                    borderDash: [5, 5],
+                    data: min_data
+                },{
+                    label: 'Maximum Price',
+                    fill: false,
+                    backgroundColor: 'rgb(0, 255, 0)',
+                    borderColor: 'rgb(0, 255, 0)',
+                    borderDash: [5, 5],
+                    data: max_data
+                },{
+                    label: 'Average Price',
+                    fill: false,
+                    backgroundColor: 'rgb(255, 0, 0)',
+                    borderColor: 'rgb(255, 0, 0)',
+                    borderDash: [5, 5],
+                    data: avg_data
+                }]
+            },
+
+            // Configuration options go here
+            // options: {
+            //     title: {
+            //         display: true,
+            //         text: 'Price History of the Product',
+            //         fontSize: 20,
+            //         fontStyle: 'bold'
+            //     }
+            // }
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Price History of the Product',
+                    fontSize: 20,
+                    fontStyle: 'bold'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date',
+                            fontSize: 20,
+                            fontStyle: 'bold'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Price',
+                            fontSize: 20,
+                            fontStyle: 'bold'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock content %}

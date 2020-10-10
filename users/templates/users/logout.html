@@ -1,0 +1,8 @@
+{% extends 'users/base.html' %}
+{% block content %}
+    <h1>Thankyou for choosing our website!!!!</h1>
+    <h1>You have been logged out successfully</h1>
+    <div class="border-top pt-3">
+        <small class="text-muted">Want to login again ? <a href="{% url 'login-page' %}" class="btn btn-outline-dark">Log In</a></small>
+    </div>
+{% endblock content %}

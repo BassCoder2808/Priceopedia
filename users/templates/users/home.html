@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Welcome {{ user.username }}</h1>
+    {% else %}
+        <h1>Hi There!!! Can you please login first ?</h1>
+    {% endif %}
+    <h1>This is our home page</h1>
+    <ul class="list-group">
+      {% for category in categories %}
+        <a class="list-group-item btn btn-outline-dark btn-block" href="{% url category.category_name %}">{{ category.category_name }}</a>
+      {% endfor %}
+    </ul>
+{% endblock content %}
