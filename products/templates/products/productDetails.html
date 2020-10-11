@@ -1,4 +1,5 @@
 {% extends 'users/base.html' %}
+{% load static %}
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
@@ -9,10 +10,18 @@
         <p class="lead">{{product.number_of_users_bought}}</p>
       </div>
     </div>
-    {% for hist in history %}
-        <h1>{{hist.curr_price}}</h1>
-    {% endfor %}
-    <h1>{{labels}}</h1>
+    <div class="dropdown">
+      <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select Time Range
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{% url 'new-graph-detail' product.product_id 7 %}">1 week</a>
+        <a class="dropdown-item" href="{% url 'new-graph-detail' product.product_id 21 %}">3 weeks</a>
+        <a class="dropdown-item" href="{% url 'new-graph-detail' product.product_id 30 %}">1 month</a>
+        <a class="dropdown-item" href="{% url 'new-product-detail' product.product_id %}">From the product Launch Date</a>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <canvas id="myChart"></canvas>
     <script type="text/javascript">
@@ -108,4 +117,5 @@
             }
         });
     </script>
+
 {% endblock content %}

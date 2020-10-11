@@ -59,3 +59,23 @@ def prod_detail(request,pk):
     avg_price = [int(mean(data))]*len(data)
     print(min_price,max_price,avg_price)
     return render(request,'products/productDetails.html',{'product':prod1,'history':history,'data':data,'labels':json.dumps(labels),'min_data':min_price,'max_data':max_price,'avg_data':avg_price})
+
+def graph_detail(request,pk,time_frame):
+    print(request.path,pk,type(time_frame))
+    prod = Product.objects.filter(product_id = pk)
+    prod1 = prod[0]
+    print(prod1,type(prod1))
+    history = History.objects.filter(product_id = prod1).order_by('date')
+    data = []
+    labels = []
+    for item in history:
+        data.append(float(item.curr_price))
+        labels.append(item.date.strftime("%m/%d/%Y"))
+    data = data[len(data)-time_frame:]
+    labels = labels[len(labels)-time_frame:]
+    print(labels,data)
+    min_price = [min(data)]*len(data)
+    max_price = [max(data)]*len(data)
+    avg_price = [int(mean(data))]*len(data)
+    print(len(min_price),len(max_price),len(avg_price),len(data))
+    return render(request,'products/productDetails.html',{'product':prod1,'history':history,'data':data,'labels':json.dumps(labels),'min_data':min_price,'max_data':max_price,'avg_data':avg_price})

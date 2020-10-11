@@ -30,6 +30,7 @@ urlpatterns = [
     path('details/',ProductListView.as_view(),name='all-products'),
     path('details/<str:pk>/',ProductDetailView.as_view(),name='product-detail'),
     path('prods/<str:pk>/',product_view.prod_detail,name='new-product-detail'),
+    path('prods/<str:pk>/<int:time_frame>/',product_view.graph_detail,name='new-graph-detail'),
     path('password-reset/',auth_views.PasswordResetView.as_view(template_name = 'users/password_reset.html'),name='password_reset'),
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name = 'users/password_reset_done.html'),name='password_reset_done'),
     path('password-reset/confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name = 'users/password_reset_confirm.html'),name='password_reset_confirm'),
