@@ -10,5 +10,6 @@
       {% for category in categories %}
         <a class="list-group-item btn btn-outline-dark btn-block" href="{% url category.category_name %}">{{ category.category_name }}</a>
       {% endfor %}
+      <a class="list-group-item btn btn-outline-dark btn-block" href="{% url 'all-products' %}">All Products</a>
     </ul>
 {% endblock content %}

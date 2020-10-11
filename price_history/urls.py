@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from products import views as product_view
+from products.views import ProductListView,ProductDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,9 @@ urlpatterns = [
     path('mobiles/',product_view.phones,name='Mobile Phones'),
     path('headphones/',product_view.headphones,name='Headphones'),
     path('tablets/',product_view.tablets,name='Tablets'),
+    path('details/',ProductListView.as_view(),name='all-products'),
+    path('details/<str:pk>/',ProductDetailView.as_view(),name='product-detail'),
+    path('prods/<str:pk>/',product_view.prod_detail,name='new-product-detail'),
     path('password-reset/',auth_views.PasswordResetView.as_view(template_name = 'users/password_reset.html'),name='password_reset'),
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name = 'users/password_reset_done.html'),name='password_reset_done'),
     path('password-reset/confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name = 'users/password_reset_confirm.html'),name='password_reset_confirm'),

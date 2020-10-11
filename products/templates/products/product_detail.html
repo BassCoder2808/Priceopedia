@@ -1,0 +1,9 @@
+{% extends 'users/base.html' %}
+{% block content %}
+    <h1 class="display-4">{{product.product_name}}</h1>
+    <p class="lead">{{product.description}}</p>
+    <p class="lead">{{product.price}}</p>
+    <p class="lead">{{product.rating}}</p>
+    <p class="lead">{{product.number_of_users_bought}}</p>
+    <p class="lead">{{product.product_id}}</p>
+{% endblock content %}

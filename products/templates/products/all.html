@@ -8,7 +8,8 @@
             <p class="lead">{{product.price}}</p>
             <p class="lead">{{product.rating}}</p>
             <p class="lead">{{product.number_of_users_bought}}</p>
-            <a href="{% url 'new-product-detail' product.product_id %}" class="btn btn-outline-info">More info</a>
+            <p class="lead">{{product.product_id}}</p>
+            <h2><a class="btn btn-outline-info" href="{% url 'new-product-detail' product.product_id %}"> Detail View of Product </a></h2>
           </div>
         </div>
     {% endfor %}
