@@ -123,6 +123,9 @@
         <h1 class="display-4">{{product.product_name}}</h1>
         <p class="lead">{{product.description}}</p>
         <p class="lead">Current Price: {{current_price}}</p>
+        <p class="lead">Minimum Price: {{minimum_price}}</p>
+        <p class="lead">Maximum Price: {{maximum_price}}</p>
+        <p class="lead">Average Price till Today: {{average_price}}</p>
         <p class="lead">Ratings: {{product.rating}}</p>
         <p class="lead">Users Bought: {{product.number_of_users_bought}}</p>
         {% if user.is_superuser %}
@@ -202,7 +205,7 @@
                 labels: label_data,
                 datasets: [{
                     fill: false,
-                    label: 'Price',
+                    label: 'Current Price',
                     backgroundColor: 'rgb(195, 255, 0)',
                     borderColor: 'rgb(234, 0, 255)',
                     data: datas

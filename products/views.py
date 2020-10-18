@@ -115,9 +115,12 @@ def prod_detail(request,pk):
     min_price = [min(data)]*len(data)
     max_price = [max(data)]*len(data)
     curr_price = data[len(data)-1]
+    average_price = avg_price[len(avg_price)-1]
+    minimum_price = min_price[len(min_price)-1]
+    maximum_price = max_price[len(max_price)-1]
     #avg_price = [int(mean(data))]*len(data)
     print(labels)
-    return render(request,'products/productDetails.html',{'product':prod1,'history':history,'data':data,'labels':json.dumps(labels),'min_data':min_price,'max_data':max_price,'avg_data':avg_price,'current_price':curr_price})
+    return render(request,'products/productDetails.html',{'product':prod1,'history':history,'data':data,'labels':json.dumps(labels),'min_data':min_price,'max_data':max_price,'avg_data':avg_price,'current_price':curr_price,'average_price':average_price,'minimum_price':minimum_price,'maximum_price':maximum_price})
 
 def graph_detail(request,pk,time_frame):
     print(request.path,pk,type(time_frame))

@@ -27,7 +27,6 @@ def register(request):
         form = UserRegisterForm()
     return render(request,'users/registeration.html',{'form':form})
 
-
 def logout(request):
     return render(request,'users/logout.html')
 
